@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  name: zabbix
+spec: {}
+status: {}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: zabbix-mysql-config
+  namespace: zabbix
+  labels:
+    app: mysql
+data:
+  DB_SERVER_HOST: "zabbix-mysql-service"
+  MYSQL_DATABASE: "zabbix"
+  MYSQL_USER: "zabbix"
+  MYSQL_PASSWORD: "zabbix_pwd"
+  MYSQL_ROOT_PASSWORD: "root_pwd"
+  default_auth: |
+    [mysqld]
+    default_authentication_plugin= mysql_native_password
+

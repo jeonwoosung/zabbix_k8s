@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: zabbix-server-service
+  name: zabbix-server-service
+  namespace: zabbix
+spec:
+  ports:
+  - name: "10051"
+    nodePort: 30051
+    port: 10051
+    protocol: TCP
+    targetPort: 10051
+  selector:
+    run: zabbix-server-mysql
+  type: NodePort
+status:
+  loadBalancer: {}

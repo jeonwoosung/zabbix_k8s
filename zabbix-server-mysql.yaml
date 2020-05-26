@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: zabbix-server-mysql
+  name: zabbix-server-mysql
+  namespace: zabbix
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: zabbix-server-mysql
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: zabbix-server-mysql
+    spec:
+      containers:
+      - image: zabbix/zabbix-server-mysql:latest
+        name: zabbix-server-mysql
+        resources: {}
+        env:
+        - name: DB_SERVER_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: zabbix-mysql-config
+              key: DB_SERVER_HOST
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: zabbix-mysql-config
+              key: MYSQL_DATABASE
+        - name: MYSQL_USER
+          valueFrom:
+            configMapKeyRef:
+              name: zabbix-mysql-config
+              key: MYSQL_USER
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: zabbix-mysql-config
+              key: MYSQL_PASSWORD
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: zabbix-mysql-config
+              key: MYSQL_ROOT_PASSWORD
+status: {}
