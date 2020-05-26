@@ -9,7 +9,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-  - host: zabbix5.oplab.co.kr
+  - host: zabbix.xxxxxx.co.kr
     http:
       paths:
       - path: /
