@@ -5,6 +5,7 @@ metadata:
   labels:
     app: zabbix-mysql-service
   name: zabbix-mysql-service
+  namespace: zabbix
 spec:
   ports:
   - name: "3306"

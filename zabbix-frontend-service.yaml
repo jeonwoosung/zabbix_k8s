@@ -5,6 +5,7 @@ metadata:
   labels:
     app: zabbix-web-nginx-service
   name: zabbix-web-nginx-service
+  namespace: zabbix
 spec:
   ports:
   - name: 80-8080
