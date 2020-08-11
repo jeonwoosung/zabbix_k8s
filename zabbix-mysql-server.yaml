@@ -18,6 +18,7 @@ spec:
       labels:
         run: mysql-server
     spec:
+      nodeName: workernode02
       containers:
       - image: mysql:8.0
         name: mysql-server
@@ -48,7 +49,13 @@ spec:
         - name: mysql-config-volume 
           mountPath: /etc/mysql/conf.d/default_auth.cnf ## path to mount file
           subPath: default_auth
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
       volumes:
+        - name: mysql-persistent-storage
+          hostPath:
+            path: /k8s_volume/zabbix_mysql
+            type: DirectoryOrCreate
         - name: mysql-config-volume 
           configMap:
             name: zabbix-mysql-config
